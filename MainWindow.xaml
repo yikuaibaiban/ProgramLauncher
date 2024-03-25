@@ -1,0 +1,86 @@
+﻿<Window x:Class="ProgramLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProgramLauncher"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="程序启动器 By ykbb" Height="600" Width="800" Closed="Window_Closed" Closing="Window_Closing" StateChanged="Window_StateChanged">
+    <Grid>
+        <hc:NotifyIcon x:Name="NotifyIconContextContent"
+                   Text="程序启动器 By ykbb"
+                   Visibility="Visible">
+            <hc:Interaction.Triggers>
+                <hc:EventTrigger EventName="Click">
+                    <hc:EventToCommand Command="hc:ControlCommands.PushMainWindow2Top" />
+                </hc:EventTrigger>
+            </hc:Interaction.Triggers>
+        </hc:NotifyIcon>
+        <Grid Margin="4">
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Padding" Value="5,5,5,5" />
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.Column="0">
+                <Label Content="启动器:" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <TextBox TextWrapping="Wrap" Text="" x:Name="launcher" TextChanged="launcher_TextChanged" />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2">
+                <Button Content="选择" Click="Btn_Launcher_Select" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0">
+                <Label Content="程序:" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1">
+                <TextBox TextWrapping="Wrap" Text="" x:Name="program" TextChanged="program_TextChanged" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2">
+                <Button Content="选择" Click="Btn_Program_Select" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="0">
+                <Label Content="参数:" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1">
+                <TextBox TextWrapping="Wrap" Text="" x:Name="arguments" TextChanged="arguments_TextChanged" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2">
+                <Button Content="启动" Click="Btn_Launcher" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2">
+                <Button Content="关闭" Click="Btn_Close" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="0">
+                <Label Content="消息:" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1">
+                <Label Content="程序未启动" x:Name="process_status" />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                <RichTextBox x:Name="outLog" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run />
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
